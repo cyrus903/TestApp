@@ -5,13 +5,11 @@ using System.Text;
 
 namespace TestApp
 {
-    class Program
+    class Timer
     {
-        static void Main(string[] args)
+        public Timer()
         {
-            Test t = new Test();
-
-            Console.ReadKey();
+            
         }
     }
 }
