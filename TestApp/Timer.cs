@@ -8,27 +8,55 @@ using System.Threading;
 
 namespace TestApp
 {
-    class Timer
+
+    public delegate void CustomTimerReachedEventHandler(Object sender, CustomTimerReachedEventArgs e);
+
+    public class CustomTimerReachedEventArgs: EventArgs
     {
-        public event EventHandler TimerReached;
+        public DateTime dt { get; set; }
+
+        public CustomTimerReachedEventArgs(DateTime dt)
+        {
+            this.dt = dt;
+        }
+    }
+
+    class CustomTimer
+    {
+        public event EventHandler TimerReachedHandler;
 
         protected virtual void OnTimerReached(EventArgs e)
         {
-            EventHandler handler = TimerReached;
+            EventHandler handler = TimerReachedHandler;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+        
+        public event CustomTimerReachedEventHandler CustomTimerReachedHandler;
+
+        protected virtual void OnCustomTimerReached(CustomTimerReachedEventArgs e)
+        {
+            CustomTimerReachedEventHandler handler = CustomTimerReachedHandler;
             if (handler != null)
             {
                 handler(this, e);
             }
         }
 
-
-
-        public Timer()
+        public CustomTimer()
         {
-            Delegate2 d = new Delegate2(Delegates.d1);
+            //Delegate2 d = new Delegate2(Delegates.d1);
             //d += Delegates.d1;
-            d += Delegates.d2;
+            //d += Delegates.d2;
 
+          
+        }
+
+
+        public void Start()
+        {
             while (true)
             {
                 DateTime dt;
@@ -36,13 +64,19 @@ namespace TestApp
 
                 Signal(Delegates.d2, dt);
 
-                if (dt.Second % 5 == 0)
+                if (dt.Second % 3 == 0)
                 {
                     //Signal(Delegates.d1);
                     //Signal(Delegates.d1, dt);
-                    
-                    EventArgs e = new EventArgs();
-                    OnTimerReached(e);
+
+                    //EventArgs e = new EventArgs();
+                    OnTimerReached(EventArgs.Empty);
+                }
+                if (dt.Second % 5 == 0)
+                {
+                    CustomTimerReachedEventArgs e = new CustomTimerReachedEventArgs(dt);
+
+                    OnCustomTimerReached(e);
                 }
                 else
                 {
@@ -56,6 +90,7 @@ namespace TestApp
 
             }
         }
+
 
         //public void Signal(Delegate1 del)
         //{

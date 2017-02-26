@@ -24,29 +24,40 @@ namespace TestApp
 
         public static void d1(DateTime dt)
         {
-            Console.WriteLine(dt.ToLongDateString());
+            Console.WriteLine("d1 " + dt.ToLongDateString());
         }
 
         public static void d2(DateTime dt)
         {
-            Console.WriteLine(dt.ToLongTimeString());
+            Console.WriteLine("d2 " + dt.ToLongTimeString());
         }
 
         public static void d3(DateTime dt)
         {
-            Console.WriteLine(dt.ToShortDateString());
+            Console.WriteLine("d3 " + dt.ToShortDateString());
         }
 
         public static void d4(DateTime dt)
         {
-            Console.WriteLine(dt.ToShortTimeString());
+            Console.WriteLine("d4 " + dt.ToShortTimeString());
         }
 
 
 
-        public static void e1(Object sender, EventArgs e)
+        public static void event1(Object sender, EventArgs e)
         {
-            Console.WriteLine("e1");
+            Console.WriteLine("event1 " + sender.GetType() + " " + e.GetType());
+        }
+
+        public static void event2(Object sender, EventArgs e)
+        {
+            Console.WriteLine("event2 " + sender.GetType() + " " + e.GetType());
+        }
+
+
+        public static void customEvent1(Object sender, CustomTimerReachedEventArgs e)
+        {
+            Console.WriteLine("customEvent1 " + sender.GetType() + " " + e.GetType() + " " + e.dt);
         }
     }
 }
