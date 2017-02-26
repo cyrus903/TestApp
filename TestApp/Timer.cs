@@ -10,6 +10,19 @@ namespace TestApp
 {
     class Timer
     {
+        public event EventHandler TimerReached;
+
+        protected virtual void OnTimerReached(EventArgs e)
+        {
+            EventHandler handler = TimerReached;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
+
+
         public Timer()
         {
             Delegate2 d = new Delegate2(Delegates.d1);
@@ -27,6 +40,9 @@ namespace TestApp
                 {
                     //Signal(Delegates.d1);
                     //Signal(Delegates.d1, dt);
+                    
+                    EventArgs e = new EventArgs();
+                    OnTimerReached(e);
                 }
                 else
                 {
@@ -41,10 +57,10 @@ namespace TestApp
             }
         }
 
-        public void Signal(Delegate1 del)
-        {
-            del();
-        }
+        //public void Signal(Delegate1 del)
+        //{
+        //    del();
+        //}
 
         public void Signal(Delegate2 del, DateTime dt)
         {

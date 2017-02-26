@@ -12,6 +12,9 @@ namespace TestApp
             //Test t = new Test();
             Timer tm = new Timer();
 
+            tm.TimerReached += Delegates.e1;
+            //tm.TimerReached += new EventHandler(Delegates.e1);
+
             Console.ReadKey();
         }
     }

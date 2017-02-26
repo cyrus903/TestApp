@@ -41,6 +41,12 @@ namespace TestApp
         {
             Console.WriteLine(dt.ToShortTimeString());
         }
-        
+
+
+
+        public static void e1(Object sender, EventArgs e)
+        {
+            Console.WriteLine("e1");
+        }
     }
 }
