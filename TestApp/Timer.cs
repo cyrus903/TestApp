@@ -11,6 +11,10 @@ namespace TestApp
 
     public delegate void CustomTimerReachedEventHandler(Object sender, CustomTimerReachedEventArgs e);
 
+    public delegate void MyEventHandler(int i);
+
+    //public delegate void EventHandler(Object sender, EventArgs e);
+
     public class CustomTimerReachedEventArgs: EventArgs
     {
         public DateTime dt { get; set; }
@@ -23,37 +27,43 @@ namespace TestApp
 
     class CustomTimer
     {
-        public event EventHandler TimerReachedHandler;
+        public event EventHandler TimerReached;
 
         protected virtual void OnTimerReached(EventArgs e)
         {
-            EventHandler handler = TimerReachedHandler;
+            EventHandler handler = TimerReached;
             if (handler != null)
             {
                 handler(this, e);
             }
         }
         
-        public event CustomTimerReachedEventHandler CustomTimerReachedHandler;
+        public event CustomTimerReachedEventHandler CustomTimerReached;        
 
         protected virtual void OnCustomTimerReached(CustomTimerReachedEventArgs e)
         {
-            CustomTimerReachedEventHandler handler = CustomTimerReachedHandler;
+            CustomTimerReachedEventHandler handler = CustomTimerReached;
+         
             if (handler != null)
             {
-                handler(this, e);
+                handler(this, e);               
             }
         }
 
-        public CustomTimer()
+        public event MyEventHandler MyEventRaised;
+
+        protected virtual void OnMyEventRaised(int i)
         {
-            //Delegate2 d = new Delegate2(Delegates.d1);
-            //d += Delegates.d1;
-            //d += Delegates.d2;
-
-          
+            if (MyEventRaised != null)
+            {
+                MyEventRaised(i);
+            }
         }
+       
 
+        public CustomTimer()
+        {            
+        }
 
         public void Start()
         {
@@ -65,18 +75,19 @@ namespace TestApp
                 Signal(Delegates.d2, dt);
 
                 if (dt.Second % 3 == 0)
-                {
-                    //Signal(Delegates.d1);
-                    //Signal(Delegates.d1, dt);
-
-                    //EventArgs e = new EventArgs();
+                {                   
                     OnTimerReached(EventArgs.Empty);
                 }
-                if (dt.Second % 5 == 0)
+                else if (dt.Second % 5 == 0)
                 {
                     CustomTimerReachedEventArgs e = new CustomTimerReachedEventArgs(dt);
 
                     OnCustomTimerReached(e);
+                }
+                else if (dt.Second % 7 == 0)
+                {
+                    int i = dt.Millisecond;
+                    OnMyEventRaised(i);
                 }
                 else
                 {

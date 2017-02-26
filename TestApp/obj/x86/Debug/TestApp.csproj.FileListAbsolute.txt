@@ -6,3 +6,7 @@ C:\Users\1007053040\Documents\GitHub\TestApp\TestApp\obj\x86\Debug\TestApp.exe
 C:\Users\1007053040\Documents\GitHub\TestApp\TestApp\obj\x86\Debug\TestApp.pdb
 C:\Users\1007053040\Documents\GitHub\TestApp\TestApp\bin\Debug\TestApp.exe
 C:\Users\1007053040\Documents\GitHub\TestApp\TestApp\bin\Debug\TestApp.pdb
+C:\Users\Cyrus\Documents\GitHub\TestApp\TestApp\obj\x86\Debug\TestApp.exe
+C:\Users\Cyrus\Documents\GitHub\TestApp\TestApp\obj\x86\Debug\TestApp.pdb
+C:\Users\Cyrus\Documents\GitHub\TestApp\TestApp\bin\Debug\TestApp.exe
+C:\Users\Cyrus\Documents\GitHub\TestApp\TestApp\bin\Debug\TestApp.pdb

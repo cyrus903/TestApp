@@ -14,11 +14,13 @@ namespace TestApp
             //Test t = new Test();
             CustomTimer tm = new CustomTimer();
 
-            tm.TimerReachedHandler += Delegates.event1;
+            tm.TimerReached += Delegates.event1;
             //tm.TimerReached += Delegates.event2;
             //tm.TimerReached += new EventHandler(Delegates.e1);
 
-            tm.CustomTimerReachedHandler += Delegates.customEvent1;
+            tm.CustomTimerReached += Delegates.customEvent1;
+
+            tm.MyEventRaised += Delegates.myEvent;
 
             Thread th = new Thread( tm.Start);
             th.Start();
@@ -34,14 +36,14 @@ namespace TestApp
                 {
                     Console.WriteLine("You pressed a");
                     //tm.TimerReached += Delegates.event1;
-                    tm.TimerReachedHandler -= Delegates.event2;
-                    tm.TimerReachedHandler += Delegates.event1;
+                    tm.TimerReached -= Delegates.event2;
+                    tm.TimerReached += Delegates.event1;
                 }
                 else if (info.KeyChar == 'b')
                 {
                     Console.WriteLine("You pressed b");
-                    tm.TimerReachedHandler -= Delegates.event1;
-                    tm.TimerReachedHandler += Delegates.event2;
+                    tm.TimerReached -= Delegates.event1;
+                    tm.TimerReached += Delegates.event2;
                 }
 
             }

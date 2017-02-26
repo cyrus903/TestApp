@@ -59,5 +59,16 @@ namespace TestApp
         {
             Console.WriteLine("customEvent1 " + sender.GetType() + " " + e.GetType() + " " + e.dt);
         }
+
+        //public static void customEvent1(Object sender, CustomTimerReachedEventArgs e)
+        //{
+        //    Console.WriteLine("customEvent1 "+ " " + e.GetType() + " " + e.dt);
+        //}
+
+        public static void myEvent(int i)
+        {
+            Console.WriteLine("Milliseconds=" + i);
+        }
     }
+
 }
